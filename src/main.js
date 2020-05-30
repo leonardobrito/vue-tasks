@@ -3,11 +3,10 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 import axios from "axios";
 
-import { routes } from "./routes";
-Vue.use(VueRouter);
+import router from "./router";
 
-const router = new VueRouter({ routes, mode: "history" });
 Vue.prototype.$http = axios;
+Vue.use(VueRouter);
 
 new Vue({
   el: "#app",
