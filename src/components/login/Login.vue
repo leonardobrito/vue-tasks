@@ -9,7 +9,7 @@
       <label>password:</label>
       <input type="password" autocomplete="new-password" v-model="password" />
     </div>
-    <button>Login</button>
+    <button @click="doLogin(username, password)">Login</button>
   </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
       username: "",
       password: ""
     };
+  },
+  methods: {
+    doLogin(username, password) {
+      window.alert(`${username}, ${password}`);
+    }
   }
 };
 </script>
