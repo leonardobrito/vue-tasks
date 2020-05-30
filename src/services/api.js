@@ -4,6 +4,16 @@ const HOST = "http://edimossilva-task-manager.herokuapp.com";
 const LOGIN_URL = `${HOST}/auth/login`;
 const TASKGROUPS_URL = `${HOST}/task_lists`;
 
+export const getRequestConfig = () => {
+  const token = localStorage.getItem("token");
+  const requestConfig = {
+    headers: {
+      Authorization: `Basic ${token}`
+    }
+  };
+  return requestConfig;
+};
+
 export const doLoginApi = (username, password) => {
   const params = { username, password };
 
@@ -11,12 +21,11 @@ export const doLoginApi = (username, password) => {
 };
 
 export const getTaskgroupsApi = () => {
-  const token = localStorage.getItem("token");
-  const requestConfig = {
-    headers: {
-      Authorization: `Basic ${token}`
-    }
-  };
+  return axios.get(TASKGROUPS_URL, getRequestConfig());
+};
 
-  return axios.get(TASKGROUPS_URL, requestConfig);
+export const getTaskgroupApi = id => {
+  const getTaskgroupApiURL = `${TASKGROUPS_URL}/${id}`;
+
+  return axios.get(getTaskgroupApiURL, getRequestConfig());
 };
