@@ -4,7 +4,11 @@
     <button @click="doLogout()">Logout</button>
     <ul>
       <li v-for="taskgroup in taskgroups" :key="taskgroup.id">
-        {{ taskgroup }}
+        <router-link
+          :to="{ name: 'showTaskgroup', params: { id: taskgroup.id } }"
+        >
+          {{ taskgroup.name }}
+        </router-link>
       </li>
     </ul>
   </div>
