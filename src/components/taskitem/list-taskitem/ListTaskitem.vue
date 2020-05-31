@@ -42,7 +42,7 @@ export default {
         checked: !taskItem.checked
       };
       updateTaskItemApi(mutableTaskItem).then(
-        result => console.log(result.data.data),
+        result => this.$store.commit("setTaskitem", mutableTaskItem),
         error => console.log(error)
       );
       window.alert(taskItem.checked);
