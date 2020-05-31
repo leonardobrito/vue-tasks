@@ -15,7 +15,7 @@
       >Frequence Type: {{ taskgroup.frequence_type }}</label
     >
     <br />
-
+    <label for="taskItemsOverview">{{ taskItemsOverview }}</label>
     <ul>
       <li v-for="taskItem in formattedTaskItems" :key="taskItem.id">
         {{ taskItem }}
@@ -46,6 +46,9 @@ export default {
         name: taskItem.task.name,
         description: taskItem.task.description
       };
+    },
+    isTaskItemChecked({ checked }) {
+      return checked;
     }
   },
   computed: {
@@ -59,6 +62,12 @@ export default {
       const { task_in_lists: taskItems } = taskgroup;
 
       return taskItems.map(formatTaskItem);
+    },
+    taskItemsOverview: function() {
+      const { formattedTaskItems, isTaskItemChecked } = this;
+      const length = formattedTaskItems.length;
+      const checkedLength = formattedTaskItems.filter(isTaskItemChecked).length;
+      return `${checkedLength} of ${length} are checked`;
     }
   }
 };
