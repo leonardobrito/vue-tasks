@@ -15,19 +15,19 @@
       >Frequence Type: {{ taskgroup.frequence_type }}</label
     >
     <br />
-    <label for="taskItemsOverview">{{ taskItemsOverview }}</label>
-    <ul>
-      <li v-for="taskItem in formattedTaskItems" :key="taskItem.id">
-        {{ taskItem }}
-      </li>
-    </ul>
+    <list-taskitem v-bind:taskItems="taskgroup.task_in_lists"></list-taskitem>
   </div>
 </template>
 
 <script>
 import { getTaskgroupApi } from "../../../services/api";
+import ListTaskitem from "../../taskitem/list-taskitem/ListTaskitem";
+
 export default {
   props: ["id"],
+  components: {
+    "list-taskitem": ListTaskitem
+  },
   data() {
     return {
       taskgroup: {}
@@ -37,38 +37,6 @@ export default {
     getTaskgroupApi(this.id).then(response => {
       this.taskgroup = response.data.data;
     });
-  },
-  methods: {
-    formatTaskItem(taskItem) {
-      return {
-        id: taskItem.task.id,
-        checked: taskItem.checked,
-        name: taskItem.task.name,
-        description: taskItem.task.description
-      };
-    },
-    isTaskItemChecked({ checked }) {
-      return checked;
-    }
-  },
-  computed: {
-    formattedTaskItems: function() {
-      const { taskgroup, formatTaskItem } = this;
-
-      if (!taskgroup.task_in_lists) {
-        return [];
-      }
-
-      const { task_in_lists: taskItems } = taskgroup;
-
-      return taskItems.map(formatTaskItem);
-    },
-    taskItemsOverview: function() {
-      const { formattedTaskItems, isTaskItemChecked } = this;
-      const length = formattedTaskItems.length;
-      const checkedLength = formattedTaskItems.filter(isTaskItemChecked).length;
-      return `${checkedLength} of ${length} are checked`;
-    }
   }
 };
 </script>
