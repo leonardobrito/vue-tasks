@@ -50,13 +50,15 @@ export default {
   },
   computed: {
     formattedTaskItems: function() {
-      if (!this.taskgroup.task_in_lists) {
+      const { taskgroup, formatTaskItem } = this;
+
+      if (!taskgroup.task_in_lists) {
         return [];
       }
 
-      const { task_in_lists: taskItems } = this.taskgroup;
+      const { task_in_lists: taskItems } = taskgroup;
 
-      return taskItems.map(this.formatTaskItem);
+      return taskItems.map(formatTaskItem);
     }
   }
 };
