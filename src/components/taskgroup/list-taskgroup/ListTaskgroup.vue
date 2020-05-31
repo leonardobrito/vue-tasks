@@ -10,7 +10,7 @@
         >
           {{ taskgroup.name }}
         </router-link>
-        <button @click="deleteTaskgroup(taskgroup.id)">Deletar</button>
+        <button @click="deleteTaskgroup(taskgroup.id)">Delete</button>
       </li>
     </ul>
   </div>
@@ -42,7 +42,6 @@ export default {
       this.$router.push({ name: "newTaskgroup" });
     },
     deleteTaskgroup(taskgroupId) {
-      this.$router.forward();
       deleteTaskgroupApi(taskgroupId).then(
         result => this.removeTaskgroup(taskgroupId),
         error => console.log("error")

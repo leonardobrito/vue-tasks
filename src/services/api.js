@@ -5,6 +5,7 @@ const LOGIN_URL = `${HOST}/auth/login`;
 const TASKGROUPS_URL = `${HOST}/task_lists`;
 const TASKITEM_URL = `${HOST}/task_in_lists`;
 const STORE_TASK_ITEM = `${HOST}/task_with_task_list`;
+const TASK = `${HOST}/tasks`;
 
 export const getRequestConfig = () => {
   const token = localStorage.getItem("token");
@@ -45,9 +46,22 @@ export const storeTaskgroupApi = newTaskgroup => {
 
 export const deleteTaskgroupApi = id => {
   const deleteTaskgroupApiURL = `${TASKGROUPS_URL}/${id}`;
+
   return axios.delete(deleteTaskgroupApiURL, getRequestConfig());
 };
 
-export const storeTaskInTaskgroup = taskitem => {
+export const storeTaskInTaskgroupApi = taskitem => {
   return axios.post(STORE_TASK_ITEM, taskitem, getRequestConfig());
+};
+
+export const deleteTaskitemApi = id => {
+  const deleteTaskitemApiURL = `${TASKITEM_URL}/${id}`;
+
+  return axios.delete(deleteTaskitemApiURL, getRequestConfig());
+};
+
+export const updateTaskApi = taskitem => {
+  const getTaskitemApiURL = `${TASK}/${taskitem.id}`;
+
+  return axios.put(getTaskitemApiURL, taskitem, getRequestConfig());
 };

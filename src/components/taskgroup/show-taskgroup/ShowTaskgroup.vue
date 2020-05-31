@@ -2,9 +2,6 @@
   <div>
     <h1>Show Taskgroup - id: {{ id }}</h1>
 
-    <button @click="newTaskitem(taskgroup.id)">New Taskitem</button>
-    <br />
-
     <label for="id">Id: {{ taskgroup.id }}</label>
     <br />
 
@@ -18,6 +15,12 @@
       >Frequence Type: {{ taskgroup.frequence_type }}</label
     >
     <br />
+    <br />
+    <button @click="back()">Back</button>
+    <button @click="newTaskitem(taskgroup.id)">New Taskitem</button>
+    <br />
+    <br />
+
     <list-taskitem></list-taskitem>
   </div>
 </template>
@@ -42,8 +45,11 @@ export default {
   },
   methods: {
     ...mapMutations(["setTaskgroup"]),
+    back() {
+      this.$router.back();
+    },
     newTaskitem(id) {
-      this.$router.push({ name: "newTaskitem", params: { id } });
+      this.$router.push({ name: "newTaskitem", params: { id: this.id } });
     }
   }
 };

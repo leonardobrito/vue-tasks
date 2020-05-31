@@ -15,18 +15,22 @@
         <label>name: {{ taskItem.name }}</label>
         <br />
         <label>description: {{ taskItem.description }}</label>
+        <br />
+        <button @click="updateTaskitem(taskItem.id)">Update item</button>
+        <br />
+        <button @click="deleteTaskitem(taskItem.id)">Delete item</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { updateTaskItemApi } from "../../../services/api";
+import { updateTaskItemApi, deleteTaskitemApi } from "../../../services/api";
 import { mapState, mapMutations } from "vuex";
 
 export default {
   methods: {
-    ...mapMutations(["setTaskitem"]),
+    ...mapMutations(["setTaskitem", "removeTaskitem"]),
     formatTaskItem(taskItem) {
       return {
         id: taskItem.id,
@@ -47,6 +51,16 @@ export default {
         result => this.setTaskitem(mutableTaskItem),
         error => console.log(error)
       );
+    },
+    updateTaskitem(id) {
+      this.$router.push({ name: "showTaskitem", params: { id } });
+    },
+    deleteTaskitem(taskitemId) {
+      deleteTaskitemApi(taskitemId).then(
+        result => this.removeTaskitem(taskitemId),
+        error => console.log(error)
+      );
+      // this.removeTaskitem(taskitemId)
     }
   },
   computed: {

@@ -19,7 +19,7 @@
     <input type="text" v-model="description" />
     <br />
 
-    <button @click="back()">Cancelar</button>
+    <button @click="back()">Cancel</button>
     <button @click="saveTaskgroup(title, description, frequenceType)">
       Save
     </button>
@@ -56,7 +56,7 @@ export default {
 
       storeTaskgroupApi(mountedTaskgroup).then(
         response => {
-          this.$router.push({ name: "listTaskgroup" });
+          this.$router.back({ name: "listTaskgroup" });
         },
         error => console.log(error.response.data.error_message)
       );

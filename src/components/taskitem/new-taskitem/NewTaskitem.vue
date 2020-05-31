@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>New Taskitem - id: {{ id }}</h1>
+    <h1>New Taskitem - in Taskgroup with id: {{ id }}</h1>
 
     <label for="name">Title</label>
     <input type="text" name="name" id="name" v-model="title" />
@@ -10,13 +10,13 @@
     <label for="description">Description</label>
     <input type="text" v-model="description" />
     <br />
-    <button @click="back()">Cancelar</button>
-    <button @click="saveTaskitem(title, description)">Salvar</button>
+    <button @click="back()">Cancel</button>
+    <button @click="saveTaskitem(title, description)">Salve</button>
   </div>
 </template>
 
 <script>
-import { storeTaskInTaskgroup } from "../../../services/api";
+import { storeTaskInTaskgroupApi } from "../../../services/api";
 
 export default {
   props: ["id"],
@@ -41,9 +41,9 @@ export default {
         task_list_id: this.id
       };
 
-      storeTaskInTaskgroup(mountedTaskitem).then(
+      storeTaskInTaskgroupApi(mountedTaskitem).then(
         response => {
-          this.$router.push({ name: "showTaskgroup", params: { id: this.id } });
+          this.$router.back();
         },
         error => console.log(error.response.data.error_message)
       );

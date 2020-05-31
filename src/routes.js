@@ -1,6 +1,9 @@
 import Login from "./components/login/Login.vue";
 import ListTaskgroup from "./components/taskgroup/list-taskgroup/ListTaskgroup.vue";
+
 import ShowTaskgroup from "./components/taskgroup/show-taskgroup/ShowTaskgroup.vue";
+import ShowTaskitem from "./components/taskitem/show-taskitem/ShowTaskitem.vue";
+
 import NewTaskgroup from "./components/taskgroup/new-taskgroup/NewTaskgroup.vue";
 import NewTaskitem from "./components/taskitem/new-taskitem/NewTaskitem.vue";
 
@@ -40,6 +43,15 @@ export const routes = [
     path: "/taskitem/new/:id",
     props: true,
     component: NewTaskitem,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    name: "showTaskitem",
+    path: "/taskitem/show/:id",
+    props: true,
+    component: ShowTaskitem,
     meta: {
       requiresAuth: true
     }
