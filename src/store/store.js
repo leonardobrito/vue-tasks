@@ -16,9 +16,10 @@ export const store = new Vuex.Store({
     },
     removeTaskgroup(state, id) {
       const stateTaskgroup = state.taskgroups.find(e => e.id == id);
-      const index = state.taskgroups.indexOf(stateTaskgroup);
 
-      state.taskgroups.splice(index);
+      state.taskgroups = state.taskgroups.filter(task => {
+        return task !== stateTaskgroup;
+      });
     },
     setTaskgroup(state, taskgroup) {
       state.taskgroup = taskgroup;
