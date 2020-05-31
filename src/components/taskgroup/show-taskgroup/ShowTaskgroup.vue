@@ -15,7 +15,7 @@
       >Frequence Type: {{ taskgroup.frequence_type }}</label
     >
     <br />
-    <list-taskitem v-bind:taskItems="taskgroup.task_in_lists"></list-taskitem>
+    <list-taskitem></list-taskitem>
   </div>
 </template>
 

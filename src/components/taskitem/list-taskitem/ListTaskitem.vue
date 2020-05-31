@@ -24,7 +24,6 @@
 import { updateTaskItemApi } from "../../../services/api";
 
 export default {
-  props: ["taskItems"],
   methods: {
     formatTaskItem(taskItem) {
       return {
@@ -50,6 +49,9 @@ export default {
     }
   },
   computed: {
+    taskItems() {
+      return this.$store.state.taskItems;
+    },
     formattedTaskItems: function() {
       const { taskItems, formatTaskItem } = this;
 
