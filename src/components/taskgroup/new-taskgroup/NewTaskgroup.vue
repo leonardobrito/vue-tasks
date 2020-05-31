@@ -5,8 +5,8 @@
     <label for="name">Title</label>
     <input type="text" name="name" id="name" v-model="title" />
     <br />
-    <label for="cars">Frequencia</label>
 
+    <label for="frequenceType">Frequencia</label>
     <select v-model="frequenceType">
       <option value="daily">Diário</option>
       <option value="weekly">Semanal</option>
@@ -14,14 +14,11 @@
       <option value="yearly">Anual</option>
     </select>
     <br />
+
     <label for="description">Description</label>
-    <input
-      type="text"
-      name="description"
-      id="description"
-      v-model="description"
-    />
+    <input type="text" v-model="description" />
     <br />
+
     <button @click="back()">Cancelar</button>
     <button @click="saveTaskgroup(title, description, frequenceType)">
       Save

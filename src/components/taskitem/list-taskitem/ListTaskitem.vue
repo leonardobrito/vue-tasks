@@ -47,7 +47,6 @@ export default {
         result => this.setTaskitem(mutableTaskItem),
         error => console.log(error)
       );
-      window.alert(taskItem.checked);
     }
   },
   computed: {

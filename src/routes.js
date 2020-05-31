@@ -2,6 +2,7 @@ import Login from "./components/login/Login.vue";
 import ListTaskgroup from "./components/taskgroup/list-taskgroup/ListTaskgroup.vue";
 import ShowTaskgroup from "./components/taskgroup/show-taskgroup/ShowTaskgroup.vue";
 import NewTaskgroup from "./components/taskgroup/new-taskgroup/NewTaskgroup.vue";
+import NewTaskitem from "./components/taskitem/new-taskitem/NewTaskitem.vue";
 
 export const routes = [
   {
@@ -30,6 +31,15 @@ export const routes = [
     name: "newTaskgroup",
     path: "/taskgroup/new",
     component: NewTaskgroup,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    name: "newTaskitem",
+    path: "/taskitem/new/:id",
+    props: true,
+    component: NewTaskitem,
     meta: {
       requiresAuth: true
     }

@@ -2,6 +2,9 @@
   <div>
     <h1>Show Taskgroup - id: {{ id }}</h1>
 
+    <button @click="newTaskitem(taskgroup.id)">New Taskitem</button>
+    <br />
+
     <label for="id">Id: {{ taskgroup.id }}</label>
     <br />
 
@@ -38,7 +41,10 @@ export default {
     });
   },
   methods: {
-    ...mapMutations(["setTaskgroup"])
+    ...mapMutations(["setTaskgroup"]),
+    newTaskitem(id) {
+      this.$router.push({ name: "newTaskitem", params: { id } });
+    }
   }
 };
 </script>
