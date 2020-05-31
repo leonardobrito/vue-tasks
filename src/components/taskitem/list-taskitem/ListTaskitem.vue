@@ -4,7 +4,13 @@
     <br />
     <ul>
       <li v-for="taskItem in formattedTaskItems" :key="taskItem.id">
-        {{ taskItem }}
+        <div>
+          <label>checkbox:</label>
+          <input type="checkbox" v-model="taskItem.checked" />
+        </div>
+        <label>name: {{ taskItem.name }}</label>
+        <br />
+        <label>description: {{ taskItem.description }}</label>
       </li>
     </ul>
   </div>
