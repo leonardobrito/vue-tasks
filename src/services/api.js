@@ -37,3 +37,12 @@ export const updateTaskItemApi = taskItem => {
 
   return axios.put(getTaskgroupApiURL, params, getRequestConfig());
 };
+
+export const storeTaskgroupApi = newTaskgroup => {
+  return axios.post(TASKGROUPS_URL, newTaskgroup, getRequestConfig());
+};
+
+export const deleteTaskgroupApi = id => {
+  const deleteTaskgroupApiURL = `${TASKGROUPS_URL}/${id}`;
+  return axios.delete(deleteTaskgroupApiURL, getRequestConfig());
+};

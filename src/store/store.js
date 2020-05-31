@@ -5,10 +5,20 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    taskgroups: [],
     taskgroup: {},
     taskItems: []
   },
   mutations: {
+    storeTaskgroups(state, taskgroups) {
+      state.taskgroups = taskgroups;
+    },
+    removeTaskgroup(state, id) {
+      const stateTaskgroup = state.taskgroups.find(e => e.id == id);
+      const index = state.taskgroups.indexOf(stateTaskgroup);
+
+      state.taskgroups.splice(index);
+    },
     setTaskgroup(state, taskgroup) {
       state.taskgroup = taskgroup;
       state.taskItems = taskgroup.task_in_lists;
