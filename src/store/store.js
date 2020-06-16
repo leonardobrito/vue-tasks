@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import login from './modules/login';
 
 Vue.use(Vuex);
 
@@ -9,6 +10,9 @@ export const store = new Vuex.Store({
     taskgroup: {},
     taskItems: [],
     taskitem: {}
+  },
+  modules: {
+    login,
   },
   mutations: {
     storeTaskgroups(state, taskgroups) {
