@@ -6,7 +6,11 @@ const login = {
     token: null
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    setToken: (state, payload) => {
+      state.token = payload.token;
+    },
+  },
   actions: {
     doLogin({ commit }, value) {
       const { username, password } = value;
@@ -16,7 +20,7 @@ const login = {
           const { data: { token }} = response;
 
           localStorage.token = token;
-
+          commit('setToken', { token });
         }).catch(error => {
           console.error(error.response.data.error_message);
         });
