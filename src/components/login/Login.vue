@@ -15,7 +15,7 @@
 
 <script>
 import { doLoginApi } from "../../services/api";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -23,6 +23,9 @@ export default {
       username: "",
       password: ""
     };
+  },
+  computed: {
+    ...mapGetters('login', ['getToken']),
   },
   methods: {
     ...mapActions('login', ['doLogin']),

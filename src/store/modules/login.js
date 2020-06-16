@@ -5,7 +5,9 @@ const login = {
   state: {
     token: null
   },
-  getters: {},
+  getters: {
+    getToken: state => state.token,
+  },
   mutations: {
     setToken: (state, payload) => {
       state.token = payload.token;
