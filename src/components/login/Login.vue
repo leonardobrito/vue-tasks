@@ -27,6 +27,11 @@ export default {
   computed: {
     ...mapGetters('login', ['getToken']),
   },
+  watch: {
+    getToken(newToken) {
+      if(newToken) this.redirectToList()
+    }
+  },
   methods: {
     ...mapActions('login', ['doLogin']),
     handleDoLogin(username, password) {
@@ -34,6 +39,9 @@ export default {
 
       this.doLogin(payload);
     },
+    redirectToList(){
+      this.$router.push({ name: "listTaskgroup" });
+    }
   }
 };
 </script>
