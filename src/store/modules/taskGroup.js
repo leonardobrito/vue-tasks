@@ -1,3 +1,5 @@
+import { getTaskgroupsApi } from '../../services/api';
+
 const taskGroup = {
   namespaced: true,
   state: {
@@ -21,7 +23,16 @@ const taskGroup = {
       state.taskItems = taskgroup.task_in_lists;
     },
   },
-  actions: {},
+  actions: {
+    fetchTaskGroups({ commit }) {
+      getTaskgroupsApi().then(
+        result => {
+          commit('storeTaskgroups', result.data.data);
+        },
+        error => console.log(error.response.data.error_message)
+      );
+    }
+  },
 };
 
 export default taskGroup;
