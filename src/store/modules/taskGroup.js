@@ -1,4 +1,4 @@
-import { getTaskgroupsApi } from '../../services/api';
+import { getTaskgroupsApi, deleteTaskgroupApi } from '../../services/api';
 
 const taskGroup = {
   namespaced: true,
@@ -30,6 +30,12 @@ const taskGroup = {
           commit('storeTaskgroups', result.data.data);
         },
         error => console.log(error.response.data.error_message)
+      );
+    },
+    deleteTaskgroup({ commit }, taskgroupId) {
+      deleteTaskgroupApi(taskgroupId).then(
+        _result => commit('removeTaskgroup', taskgroupId),
+        error => console.log("error", error)
       );
     }
   },
