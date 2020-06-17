@@ -26,9 +26,8 @@
 </template>
 
 <script>
-import { getTaskgroupApi } from "../../../services/api";
 import ListTaskitem from "../../taskitem/list-taskitem/ListTaskitem";
-import { mapState, mapMutations } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   props: ["id"],
@@ -39,12 +38,12 @@ export default {
     ...mapState('taskGroup', ['taskgroup'])
   },
   mounted: function() {
-    getTaskgroupApi(this.id).then(response => {
-      this.setTaskgroup(response.data.data);
+    this.setTaskgroup(this.id).then(response => {
+      console.log(response);
     });
   },
   methods: {
-    ...mapMutations('taskGroup', ['setTaskgroup']),
+    ...mapActions('taskGroup', ['setTaskgroup']),
     back() {
       this.$router.back();
     },
