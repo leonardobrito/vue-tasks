@@ -36,7 +36,7 @@ export default {
     "list-taskitem": ListTaskitem
   },
   computed: {
-    ...mapState(["taskgroup"])
+    ...mapState('taskGroup', ['taskgroup'])
   },
   mounted: function() {
     getTaskgroupApi(this.id).then(response => {
@@ -44,7 +44,7 @@ export default {
     });
   },
   methods: {
-    ...mapMutations(["setTaskgroup"]),
+    ...mapMutations('taskGroup', ['setTaskgroup']),
     back() {
       this.$router.back();
     },

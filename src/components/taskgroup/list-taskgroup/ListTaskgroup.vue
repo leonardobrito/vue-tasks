@@ -30,10 +30,10 @@ export default {
     );
   },
   computed: {
-    ...mapState(["taskgroups"])
+    ...mapState('taskGroup', ['taskgroups'])
   },
   methods: {
-    ...mapMutations(["storeTaskgroups", "removeTaskgroup"]),
+    ...mapMutations('taskGroup', ['storeTaskgroups', 'removeTaskgroup']),
     doLogout() {
       localStorage.removeItem("token");
       this.$router.push({ name: "login" });
