@@ -30,7 +30,7 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   methods: {
-    ...mapMutations(["setTaskitem", "removeTaskitem"]),
+    ...mapMutations('taskItem', ['setTaskitem', 'removeTaskitem']),
     formatTaskItem(taskItem) {
       return {
         id: taskItem.id,
@@ -64,7 +64,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["taskItems"]),
+    ...mapState('taskItem', ['taskItems']),
     formattedTaskItems: function() {
       const { taskItems, formatTaskItem } = this;
 
