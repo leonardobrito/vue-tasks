@@ -25,10 +25,10 @@ export default {
     this.getTaskitem(this.id);
   },
   computed: {
-    ...mapState(["taskitem"])
+    ...mapState('taskItem', ['taskitem'])
   },
   methods: {
-    ...mapMutations(["getTaskitem"]),
+    ...mapMutations('taskItem', ['getTaskitem']),
     back() {
       this.$router.back();
     },
