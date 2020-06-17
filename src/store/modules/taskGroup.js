@@ -1,4 +1,8 @@
-import { getTaskgroupsApi, deleteTaskgroupApi } from '../../services/api';
+import {
+  getTaskgroupApi,
+  getTaskgroupsApi,
+  deleteTaskgroupApi
+} from '../../services/api';
 
 const taskGroup = {
   namespaced: true,
@@ -18,9 +22,8 @@ const taskGroup = {
         return task !== stateTaskgroup;
       });
     },
-    setTaskgroup(state, taskgroup) {
+    updateTaskGroup(state, taskgroup) {
       state.taskgroup = taskgroup;
-      state.taskItems = taskgroup.task_in_lists;
     },
   },
   actions: {
@@ -37,6 +40,12 @@ const taskGroup = {
         _result => commit('removeTaskgroup', taskgroupId),
         error => console.log("error", error)
       );
+    },
+    setTaskgroup({ commit }, taskgroupId) {
+      return getTaskgroupApi(taskgroupId).then(response => {
+        commit('updateTaskGroup', response.data.data);
+        return response.data.data;
+      }).catch(error => console.log(error.response));
     }
   },
 };
