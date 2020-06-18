@@ -1,4 +1,7 @@
-import { deleteTaskitemApi } from "../../services/api";
+import {
+  deleteTaskitemApi,
+  updateTaskItemApi
+} from "../../services/api";
 
 const taskItem = {
   namespaced: true,
@@ -8,17 +11,6 @@ const taskItem = {
   },
   getters: {},
   mutations: {
-    setTaskitem(state, taskitem) {
-      const stateTaskitem = state.taskItems.find(e => e.id == taskitem.id);
-
-      const mutableTaskitem = {
-        ...stateTaskitem,
-        checked: taskitem.checked
-      };
-
-      const index = state.taskItems.indexOf(stateTaskitem);
-      Object.assign(state.taskItems[index], mutableTaskitem);
-    },
     assign(state, value) {
       Object.assign(state, value);
     },
@@ -31,6 +23,22 @@ const taskItem = {
     },
     setTaskitems({ commit }, taskItems) {
       commit('assign', { taskItems });
+    },
+    setTaskitem({ commit, state }, mutableTaskItem) {
+      updateTaskItemApi(mutableTaskItem).then(
+        _result => {
+          const newTaskItems = state.taskItems.map(item => {
+            if (item.id === mutableTaskItem.id) {
+              return Object.assign({}, item, mutableTaskItem );
+            }
+
+            return item;
+          })
+
+          commit('assign', { taskItems: newTaskItems });
+        },
+        error => console.error(error)
+      );
     },
     removeTaskitem({ commit, state }, id) {
       deleteTaskitemApi(id).then(

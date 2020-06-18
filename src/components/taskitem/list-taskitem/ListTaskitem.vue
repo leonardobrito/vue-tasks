@@ -25,13 +25,11 @@
 </template>
 
 <script>
-import { updateTaskItemApi } from "../../../services/api";
-import { mapActions, mapState, mapMutations } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   methods: {
-    ...mapActions('taskItem', ['removeTaskitem']),
-    ...mapMutations('taskItem', ['setTaskitem']),
+    ...mapActions('taskItem', ['removeTaskitem', 'setTaskitem']),
     formatTaskItem(taskItem) {
       return {
         id: taskItem.id,
@@ -48,10 +46,8 @@ export default {
         id: taskItem.id,
         checked: !taskItem.checked
       };
-      updateTaskItemApi(mutableTaskItem).then(
-        result => this.setTaskitem(mutableTaskItem),
-        error => console.log(error)
-      );
+
+      this.setTaskitem(mutableTaskItem);
     },
     updateTaskitem(id) {
       this.$router.push({ name: "showTaskitem", params: { id } });
