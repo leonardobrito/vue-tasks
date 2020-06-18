@@ -1,3 +1,5 @@
+import { deleteTaskitemApi } from "../../services/api";
+
 const taskItem = {
   namespaced: true,
   state: {
@@ -20,12 +22,6 @@ const taskItem = {
     updateTaskItems(state, taskItems) {
       state.taskItems = taskItems;
     },
-    removeTaskitem(state, id) {
-      const stateTaskitem = state.taskItems.find(e => e.id == id);
-      const index = state.taskItems.indexOf(stateTaskitem);
-
-      state.taskItems.splice(index);
-    },
     assign(state, value) {
       Object.assign(state, value);
     },
@@ -38,7 +34,17 @@ const taskItem = {
     },
     setTaskitems({ commit }, taskItems) {
       commit('updateTaskItems', taskItems);
-    }
+    },
+    removeTaskitem({ commit, state }, id) {
+      deleteTaskitemApi(id).then(
+        _result => {
+          const newTaskItems = state.taskItems.filter(item => item.id !== id);
+
+          commit('assign', { taskItems: newTaskItems });
+        },
+        error => console.error(error)
+      );
+    },
   },
 };
 
