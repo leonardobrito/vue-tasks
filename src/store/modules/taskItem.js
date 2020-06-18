@@ -19,9 +19,6 @@ const taskItem = {
       const index = state.taskItems.indexOf(stateTaskitem);
       Object.assign(state.taskItems[index], mutableTaskitem);
     },
-    updateTaskItems(state, taskItems) {
-      state.taskItems = taskItems;
-    },
     assign(state, value) {
       Object.assign(state, value);
     },
@@ -33,7 +30,7 @@ const taskItem = {
       commit('assign', { taskitem: stateTaskitem.task });
     },
     setTaskitems({ commit }, taskItems) {
-      commit('updateTaskItems', taskItems);
+      commit('assign', { taskItems });
     },
     removeTaskitem({ commit, state }, id) {
       deleteTaskitemApi(id).then(
