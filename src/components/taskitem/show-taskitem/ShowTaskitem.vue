@@ -17,7 +17,7 @@
 
 <script>
 import { updateTaskApi } from "../../../services/api";
-import { mapState, mapMutations } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   props: ["id"],
@@ -28,7 +28,7 @@ export default {
     ...mapState('taskItem', ['taskitem'])
   },
   methods: {
-    ...mapMutations('taskItem', ['getTaskitem']),
+    ...mapActions('taskItem', ['getTaskitem']),
     back() {
       this.$router.back();
     },
