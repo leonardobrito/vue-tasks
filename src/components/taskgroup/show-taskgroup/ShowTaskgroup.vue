@@ -39,11 +39,12 @@ export default {
   },
   mounted: function() {
     this.setTaskgroup(this.id).then(response => {
-      console.log(response);
+      this.setTaskitems(response.task_in_lists);
     });
   },
   methods: {
     ...mapActions('taskGroup', ['setTaskgroup']),
+    ...mapActions('taskItem', ['setTaskitems']),
     back() {
       this.$router.back();
     },

@@ -21,6 +21,9 @@ const taskItem = {
       const index = state.taskItems.indexOf(stateTaskitem);
       Object.assign(state.taskItems[index], mutableTaskitem);
     },
+    updateTaskItems(state, taskItems) {
+      state.taskItems = taskItems;
+    },
     removeTaskitem(state, id) {
       const stateTaskitem = state.taskItems.find(e => e.id == id);
       const index = state.taskItems.indexOf(stateTaskitem);
@@ -28,7 +31,11 @@ const taskItem = {
       state.taskItems.splice(index);
     }
   },
-  actions: {},
+  actions: {
+    setTaskitems({ commit }, taskItems) {
+      commit('updateTaskItems', taskItems);
+    }
+  },
 };
 
 export default taskItem;
