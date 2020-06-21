@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const HOST = "http://edimossilva-task-manager.herokuapp.com";
-const LOGIN_URL = `${HOST}/auth/login`;
-const TASKGROUPS_URL = `${HOST}/task_lists`;
-const TASKITEM_URL = `${HOST}/task_in_lists`;
-const STORE_TASK_ITEM = `${HOST}/task_with_task_list`;
-const TASK = `${HOST}/tasks`;
+import {
+  LOGIN_URL,
+  TASKGROUPS_URL,
+  TASKITEM_URL,
+  STORE_TASK_ITEM,
+  TASK
+} from '../constants/urls';
 
 export const getRequestConfig = () => {
   const token = localStorage.getItem("token");
