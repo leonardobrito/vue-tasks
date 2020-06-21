@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components > TaskItem > ListTaskitem should matches snapshot 1`] = `
+<div>
+  <label>
+    1 of 2 are checked
+  </label>
+   
+  <br />
+   
+  <ul>
+    <li>
+      <div>
+        <label>
+          checkbox:
+        </label>
+         
+        <input
+          type="checkbox"
+        />
+      </div>
+       
+      <label>
+        name: Learn Vuejs
+      </label>
+       
+      <br />
+       
+      <label>
+        description: Description
+      </label>
+       
+      <br />
+       
+      <button>
+        Update item
+      </button>
+       
+      <br />
+       
+      <button>
+        Delete item
+      </button>
+    </li>
+    <li>
+      <div>
+        <label>
+          checkbox:
+        </label>
+         
+        <input
+          type="checkbox"
+        />
+      </div>
+       
+      <label>
+        name: Do tests
+      </label>
+       
+      <br />
+       
+      <label>
+        description: Description 2
+      </label>
+       
+      <br />
+       
+      <button>
+        Update item
+      </button>
+       
+      <br />
+       
+      <button>
+        Delete item
+      </button>
+    </li>
+  </ul>
+</div>
+`;

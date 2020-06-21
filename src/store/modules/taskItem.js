@@ -24,21 +24,22 @@ const taskItem = {
     setTaskitems({ commit }, taskItems) {
       commit('assign', { taskItems });
     },
-    setTaskitem({ commit, state }, mutableTaskItem) {
-      updateTaskItemApi(mutableTaskItem).then(
-        _result => {
-          const newTaskItems = state.taskItems.map(item => {
-            if (item.id === mutableTaskItem.id) {
-              return Object.assign({}, item, mutableTaskItem );
-            }
+    async setTaskitem({ commit, state }, mutableTaskItem) {
+      try {
+        await updateTaskItemApi(mutableTaskItem);
 
-            return item;
-          })
+        const newTaskItems = state.taskItems.map(item => {
+          if (item.id === mutableTaskItem.id) {
+            return Object.assign({}, item, mutableTaskItem );
+          }
 
-          commit('assign', { taskItems: newTaskItems });
-        },
-        error => console.error(error)
-      );
+          return item;
+        })
+
+        commit('assign', { taskItems: newTaskItems });
+      } catch (error) {
+        console.error(error)
+      }
     },
     removeTaskitem({ commit, state }, id) {
       deleteTaskitemApi(id).then(
