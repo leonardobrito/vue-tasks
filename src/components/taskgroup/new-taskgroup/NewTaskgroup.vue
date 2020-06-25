@@ -16,7 +16,7 @@
     <br />
 
     <label for="description">Description</label>
-    <input type="text" v-model="description" />
+    <input type="text" name="description" v-model="description" />
     <br />
 
     <button @click="back()">Cancel</button>
