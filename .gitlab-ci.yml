@@ -1,0 +1,25 @@
+image: node:12.7.0
+
+stages:
+  - test
+  - build
+
+cache:
+  untracked: true
+  paths:
+    - node_modules/
+    - .npm
+
+unit test:
+  stage: test
+  script:
+    - npm run test
+
+build site:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
