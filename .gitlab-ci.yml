@@ -12,7 +12,6 @@ cache:
     - .npm
 
 test:e2e:
-  image: cypress/included:3.2.0
   stage: cypress
   before_script:
     - npm install --progress=false
