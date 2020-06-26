@@ -1,7 +1,7 @@
-import taskItem from '../../../../store/modules/taskItem'
+import taskItem from '@/store/modules/taskItem'
 import MockAdapter from 'axios-mock-adapter';
 import axios from "axios";
-import { TASKITEM_URL } from '../../../../constants/urls';
+import { TASKITEM_URL } from '@/constants/urls';
 
 const mock = new MockAdapter(axios);
 const mockTaskItem = [{

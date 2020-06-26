@@ -9,6 +9,10 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  mode: process.env.NODE_ENV,
+  optimization: {
+    minimize: false
+  },
   module: {
     rules: [
       {
@@ -66,14 +70,5 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
   ])
 }

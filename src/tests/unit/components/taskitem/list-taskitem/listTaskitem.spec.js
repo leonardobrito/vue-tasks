@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import ListTaskitem from '../../../../../components/taskitem/list-taskitem/ListTaskitem.vue';
+import ListTaskitem from '@/components/taskitem/list-taskitem/ListTaskitem.vue';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
