@@ -21,7 +21,7 @@ test:e2e:
   stage: cypress
   before_script:
     - npm install --progress=false
-    - npm run dev
+    - npm run dev &
   script:
     - npm run test:e2e
 
