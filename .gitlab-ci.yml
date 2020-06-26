@@ -19,9 +19,10 @@ unit test:
 
 test:e2e:
   stage: cypress
-  script:
+  before_script:
     - npm install --progress=false
     - npm run dev
+  script:
     - npm run test:e2e
 
 build site:
