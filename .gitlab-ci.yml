@@ -1,8 +1,8 @@
 image: node:12.7.0
 
 stages:
-  - test
   - cypress
+  - test
   - build
 
 cache:
@@ -11,19 +11,20 @@ cache:
     - node_modules/
     - .npm
 
-unit test:
-  stage: test
-  script:
-    - npm install --progress=false
-    - npm run test
-
 test:e2e:
   stage: cypress
   before_script:
     - npm install --progress=false
     - npm run dev &
   script:
+    - npm install --progress=false
     - npm run test:e2e
+
+unit test:
+  stage: test
+  script:
+    - npm install --progress=false
+    - npm run test
 
 build site:
   stage: build
