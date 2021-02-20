@@ -1,0 +1,37 @@
+image: node:12.7.0
+
+stages:
+  - cypress
+  - test
+  - build
+
+cache:
+  untracked: true
+  paths:
+    - node_modules/
+    - .npm
+
+test:e2e:
+  stage: cypress
+  before_script:
+    - npm install --progress=false
+    - npm run dev & wait-on http://localhost:8080
+  script:
+    - npm install --progress=false
+    - npm run test:e2e
+
+unit test:
+  stage: test
+  script:
+    - npm install --progress=false
+    - npm run test
+
+build site:
+  stage: build
+  script:
+    - npm install --progress=false
+    - npm run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
