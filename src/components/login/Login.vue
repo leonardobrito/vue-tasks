@@ -9,12 +9,13 @@
       <label>password:</label>
       <input type="password" autocomplete="new-password" v-model="password" />
     </div>
-    <button @click="doLogin(username, password)">Login</button>
+    <button @click="handleDoLogin(username, password)">Login</button>
   </div>
 </template>
 
 <script>
 import { doLoginApi } from "../../services/api";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -23,15 +24,23 @@ export default {
       password: ""
     };
   },
+  computed: {
+    ...mapGetters('login', ['getToken']),
+  },
+  watch: {
+    getToken(newToken) {
+      if(newToken) this.redirectToList()
+    }
+  },
   methods: {
-    doLogin(username, password) {
-      doLoginApi(username, password).then(
-        response => {
-          localStorage.token = response.data.token;
-          this.$router.push({ name: "listTaskgroup" });
-        },
-        error => console.log(error.response.data.error_message)
-      );
+    ...mapActions('login', ['doLogin']),
+    handleDoLogin(username, password) {
+      const payload = { username, password };
+
+      this.doLogin(payload);
+    },
+    redirectToList(){
+      this.$router.push({ name: "listTaskgroup" });
     }
   }
 };
